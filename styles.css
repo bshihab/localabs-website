@@ -1397,24 +1397,112 @@ p { color: var(--ink-2); }
    Scroll reveal — applied to .reveal items via JS
    ============================================================ */
 
+/* Base reveal — slightly more dramatic than v1 (40px instead of
+   28px, slower easing curve) so the motion reads as deliberate
+   rather than a quick fade. Scale-from-94 adds the extra bit of
+   "growing into place" feel that scale.com / linear.app pages
+   use heavily. */
 .reveal {
   opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 0.9s cubic-bezier(0.2, 0.8, 0.2, 1),
-              transform 0.9s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transform: translateY(40px) scale(0.97);
+  transition: opacity 1.05s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 1.05s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
 }
 .reveal.in {
   opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Slide from the left edge — used for copy columns next to phone
+   screenshots so the eye gets a directional sweep across the
+   layout instead of only vertical lift. */
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-60px);
+  transition: opacity 1.05s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 1.05s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+.reveal-left.in { opacity: 1; transform: translateX(0); }
+
+/* Mirror — for the phone column on right side of layouts. */
+.reveal-right {
+  opacity: 0;
+  transform: translateX(60px);
+  transition: opacity 1.05s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 1.05s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+.reveal-right.in { opacity: 1; transform: translateX(0); }
+
+/* Bigger, dramatic scale-up. Good for hero numbers, big cards. */
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.85);
+  transition: opacity 1.1s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 1.1s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+.reveal-scale.in { opacity: 1; transform: scale(1); }
+
+/* Blur sharpens on entry. Subtle but expensive — reserve for a
+   handful of marquee elements (section titles, primary CTAs)
+   rather than every card, since `filter: blur()` is GPU-heavy. */
+.reveal-blur {
+  opacity: 0;
+  filter: blur(14px);
+  transform: translateY(20px);
+  transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 1s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-blur.in {
+  opacity: 1;
+  filter: blur(0);
   transform: translateY(0);
 }
-.reveal.delay-1 { transition-delay: 0.06s; }
-.reveal.delay-2 { transition-delay: 0.12s; }
-.reveal.delay-3 { transition-delay: 0.18s; }
-.reveal.delay-4 { transition-delay: 0.24s; }
-.reveal.delay-5 { transition-delay: 0.30s; }
+
+/* Slight 3D tilt-correction on entry. Reads as the element
+   "rotating into place" — gives features bento tiles a bit of
+   spatial depth as you scroll past. */
+.reveal-tilt {
+  opacity: 0;
+  transform: perspective(1000px) rotateX(8deg) translateY(30px);
+  transform-origin: center bottom;
+  transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+.reveal-tilt.in { opacity: 1; transform: perspective(1000px) rotateX(0deg) translateY(0); }
+
+.reveal.delay-1, .reveal-left.delay-1, .reveal-right.delay-1, .reveal-scale.delay-1, .reveal-blur.delay-1, .reveal-tilt.delay-1 { transition-delay: 0.06s; }
+.reveal.delay-2, .reveal-left.delay-2, .reveal-right.delay-2, .reveal-scale.delay-2, .reveal-blur.delay-2, .reveal-tilt.delay-2 { transition-delay: 0.12s; }
+.reveal.delay-3, .reveal-left.delay-3, .reveal-right.delay-3, .reveal-scale.delay-3, .reveal-blur.delay-3, .reveal-tilt.delay-3 { transition-delay: 0.18s; }
+.reveal.delay-4, .reveal-left.delay-4, .reveal-right.delay-4, .reveal-scale.delay-4, .reveal-blur.delay-4, .reveal-tilt.delay-4 { transition-delay: 0.24s; }
+.reveal.delay-5, .reveal-left.delay-5, .reveal-right.delay-5, .reveal-scale.delay-5, .reveal-blur.delay-5, .reveal-tilt.delay-5 { transition-delay: 0.30s; }
+
+/* Magnetic CTA — the JS layer handles the actual transform.
+   This rule just provides the easing curve for when the cursor
+   leaves and the element snaps back to its layout position. */
+.magnetic {
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+/* Parallax elements get will-change so the GPU keeps a layer
+   warm for them — without this, scroll-tied transforms induce
+   layout thrash on the first frame. */
+[data-parallax] {
+  will-change: transform;
+}
 
 @media (prefers-reduced-motion: reduce) {
-  .reveal { opacity: 1; transform: none; transition: none; }
+  .reveal, .reveal-left, .reveal-right, .reveal-scale, .reveal-blur, .reveal-tilt {
+    opacity: 1; transform: none; filter: none; transition: none;
+  }
+  [data-parallax] { transform: none !important; }
+  .magnetic { transform: none !important; }
   .orb, .hero-chip, .hero-phone, .shield, .glow-ring, .glow-pill::before, .aura::after, .stat .deco { animation: none !important; }
   html { scroll-behavior: auto; }
 }
