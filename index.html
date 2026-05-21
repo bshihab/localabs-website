@@ -1,0 +1,631 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#FAFBFD" />
+<title>Localabs — Your labs, locally.</title>
+<meta name="description" content="Localabs translates your lab reports into plain language — entirely on your iPhone. No cloud, no account, no telemetry." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="styles.css" />
+<link rel="icon" type="image/png" href="assets/logo-full.png" />
+</head>
+<body>
+
+<!-- Animated background world + grain -->
+<div class="world" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<!-- Floating glass nav -->
+<div class="nav-shell" role="navigation" aria-label="Primary">
+  <div class="nav glass">
+    <a href="#top" class="nav-brand">
+      <img src="assets/logo-full.png" alt="" />
+      <span>Localabs</span>
+    </a>
+    <div class="nav-links">
+      <a href="#how">How it works</a>
+      <a href="#features">Features</a>
+      <a href="#privacy">Privacy</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <a href="#download" class="nav-cta">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v14"/><path d="M6 13l6 6 6-6"/><path d="M5 21h14"/></svg>
+      Download
+    </a>
+  </div>
+</div>
+
+<main id="top">
+
+<!-- ============================================================
+     HERO
+     ============================================================ -->
+<section class="hero">
+  <div class="container hero-inner">
+    <div class="hero-copy">
+      <span class="glow-pill reveal">
+        <span class="led"></span>
+        MedGemma 4B <span class="meta">· loaded on-device</span>
+      </span>
+      <h1 class="reveal delay-1">
+        <span class="line">Your lab report,</span>
+        <span class="line gradient-text">in plain&nbsp;English.</span>
+      </h1>
+      <p class="lead reveal delay-2">
+        Snap a photo of your bloodwork. Localabs runs a medical AI <em>entirely on your iPhone</em> and explains every value — privately, in seconds.
+      </p>
+      <div class="cta-row reveal delay-3">
+        <a href="#download" class="btn-primary">
+          <svg width="15" height="18" viewBox="0 0 384 512" fill="currentColor" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
+          Download on App Store
+        </a>
+        <a href="#how" class="btn-ghost">
+          See how it works
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+      <div class="hero-meta reveal delay-4">
+        <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-12V5l-8-3-8 3v5c0 8 8 12 8 12z"/></svg> No cloud</span>
+        <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg> No account</span>
+        <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg> Works offline</span>
+      </div>
+    </div>
+
+    <div class="hero-stage" aria-hidden="true">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="orb orb-3"></div>
+
+      <div class="float-grid" style="top: 8%; right: -8%;"></div>
+      <div class="float-spark" style="top: 18%; right: 26%;"></div>
+      <div class="float-spark" style="bottom: 22%; left: 14%; animation-delay: 1.4s;"></div>
+      <div class="float-spark" style="top: 56%; right: 8%; animation-delay: 0.8s;"></div>
+
+      <div class="hero-chip">
+        <img src="assets/logo-full.png" alt="" />
+      </div>
+
+      <div class="hero-phone">
+        <div class="phone">
+          <div class="notch"></div>
+          <div class="phone-screen">
+            <img src="assets/dashboard-hero.png" alt="Hypertension Visit translated by Localabs" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     PRESS / "FEATURED IN"
+     ============================================================ -->
+<section class="press">
+  <div class="container">
+    <div class="press-inner glass reveal">
+      <span class="label">Trusted privacy stack</span>
+      <div class="marks">
+        <span class="item">
+          <svg width="18" height="22" viewBox="0 0 384 512" fill="currentColor"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
+          Apple&nbsp;Vision OCR
+        </span>
+        <span class="item">HealthKit</span>
+        <span class="item">MedGemma 4B</span>
+        <span class="item">llama.cpp · Metal</span>
+        <span class="item">Hugging&nbsp;Face</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     PROMISE
+     ============================================================ -->
+<section class="promise">
+  <div class="container-narrow">
+    <h2 class="reveal">Lab reports were written <span class="scribble">for doctors</span>.</h2>
+    <p class="lead reveal delay-1">Localabs reads them for you — explains what each number means, what to ask at your next visit, and how it relates to the rest of your health. In language any human can read.</p>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     STATS counter band
+     ============================================================ -->
+<section class="stats">
+  <div class="float-spark" style="top: 14%; left: 6%; animation-delay: 0.4s;" aria-hidden="true"></div>
+  <div class="float-spark" style="top: 72%; right: 8%; animation-delay: 1.6s;" aria-hidden="true"></div>
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat glass reveal">
+        <div class="num">4B</div>
+        <div class="label">parameter medical AI, in your pocket.</div>
+        <div class="deco"></div>
+      </div>
+      <div class="stat glass reveal delay-1">
+        <div class="num">0</div>
+        <div class="label">servers, accounts, or analytics.</div>
+        <div class="deco"></div>
+      </div>
+      <div class="stat glass reveal delay-2">
+        <div class="num">5</div>
+        <div class="label">sections per report — summary, glossary, diet, questions, meds.</div>
+        <div class="deco"></div>
+      </div>
+      <div class="stat glass reveal delay-3">
+        <div class="num">~12s</div>
+        <div class="label">from photo to plain-language read-out on an iPhone 15 Pro.</div>
+        <div class="deco"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     HOW IT WORKS — compact 3-tile
+     ============================================================ -->
+<section id="how" class="how">
+  <div class="float-spark" style="top: 8%; right: 12%; animation-delay: 0.7s;" aria-hidden="true"></div>
+  <div class="float-spark" style="bottom: 18%; left: 6%; animation-delay: 2.0s;" aria-hidden="true"></div>
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow reveal">How it works</span>
+      <h2 class="reveal delay-1">Scan. Read. Ask.</h2>
+      <p class="reveal delay-2">Three steps. All on-device. No upload, no waiting on a server.</p>
+    </div>
+
+    <div class="how-tiles">
+
+      <div class="how-tile glass shimmer reveal">
+        <div class="step-num"><span class="dot"></span> Step 01</div>
+        <h3>Scan your report.</h3>
+        <p>Apple's native document scanner handles multi-page. Vision OCR pulls every value.</p>
+        <div class="tile-stage">
+          <div class="halo"></div>
+          <div class="phone phone-sm">
+            <div class="notch"></div>
+            <div class="phone-screen">
+              <img src="assets/upload-report.png" alt="Upload Report screen with Scan Document, Choose from Photos, Choose a PDF" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="how-tile glass shimmer reveal delay-1">
+        <div class="step-num"><span class="dot"></span> Step 02</div>
+        <h3>Get a plain read-out.</h3>
+        <p>The on-device AI rewrites your report into five readable sections in seconds.</p>
+        <div class="tile-stage">
+          <div class="halo"></div>
+          <div class="phone phone-sm">
+            <div class="notch"></div>
+            <div class="phone-screen">
+              <img src="assets/dashboard-hero.png" alt="Translated Hypertension Visit dashboard with summary and Apple Health" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="how-tile glass shimmer reveal delay-2">
+        <div class="step-num"><span class="dot"></span> Step 03</div>
+        <h3>Ask follow-ups.</h3>
+        <p>Lasso any line on the scan. Chat in the context of your profile and Health data.</p>
+        <div class="tile-stage">
+          <div class="halo"></div>
+          <div class="phone phone-sm">
+            <div class="notch"></div>
+            <div class="phone-screen">
+              <img src="assets/ask-localabs.png" alt="Ask Localabs chat sheet with suggested questions" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     FEATURES — bento grid
+     ============================================================ -->
+<section id="features" class="features">
+  <div class="float-spark" style="top: 14%; left: 4%; animation-delay: 0.9s;" aria-hidden="true"></div>
+  <div class="float-spark" style="top: 42%; right: 6%; animation-delay: 1.8s;" aria-hidden="true"></div>
+  <div class="float-spark" style="bottom: 12%; left: 18%; animation-delay: 2.5s;" aria-hidden="true"></div>
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow reveal">Built for real life</span>
+      <h2 class="reveal delay-1">Designed around how you actually live with your results.</h2>
+    </div>
+
+    <div class="feat-grid">
+
+      <!-- BIG hero feature: on-device -->
+      <div class="feat feat-hero glass shimmer reveal">
+        <div class="feat-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="3"/><circle cx="12" cy="12" r="3"/><path d="M9 1v3"/><path d="M15 1v3"/><path d="M9 20v3"/><path d="M15 20v3"/><path d="M1 9h3"/><path d="M1 15h3"/><path d="M20 9h3"/><path d="M20 15h3"/></svg>
+        </div>
+        <h3>100% on-device AI</h3>
+        <p>A 4-billion-parameter medical-tuned model — Google's MedGemma 4B — runs on your iPhone's Neural Engine and GPU. Your lab values never touch a server.</p>
+        <div class="demo-mini">
+          <span class="pill"><span class="dot"></span>MedGemma 4B loaded</span>
+          <span class="pill" style="background:rgba(52,199,89,0.12);color:#1F8A3F;"><span class="dot" style="background:#34C759"></span>2.49 GB · Metal GPU</span>
+        </div>
+        <img src="assets/logo-chip.png" class="feat-chip-vis" alt="" />
+      </div>
+
+      <!-- Tall: Apple Health context -->
+      <div class="feat feat-tall glass shimmer reveal delay-1">
+        <div class="feat-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l5-7 4 5 5-8 4 6"/><path d="M3 21h18"/></svg>
+        </div>
+        <h3>Apple Health context</h3>
+        <p>Activity, sleep, vitals and mobility from the past 30 days fold into every translation — so a borderline cholesterol number is interpreted next to your steps and resting heart rate.</p>
+        <div class="metric-tile">
+          <div style="flex:1">
+            <div><span class="num">1.50</span><span class="unit"> mi</span></div>
+            <div class="desc">Walking + running · 30-day avg</div>
+          </div>
+          <span class="badge"><span class="dot"></span>Typical</span>
+        </div>
+        <div class="bars">
+          <span style="height:60%"></span><span style="height:35%"></span><span style="height:78%"></span><span style="height:50%"></span>
+          <span style="height:92%"></span><span style="height:42%"></span><span style="height:65%"></span><span style="height:30%"></span>
+          <span style="height:48%"></span><span style="height:70%"></span><span style="height:55%"></span><span style="height:38%"></span>
+          <span style="height:62%"></span><span style="height:25%"></span><span style="height:80%"></span>
+        </div>
+        <div class="notable">
+          <span class="arrow">↓</span>
+          <span><strong>Steps down 51%</strong> vs. prior period</span>
+        </div>
+      </div>
+
+      <!-- History -->
+      <div class="feat feat-wide glass shimmer reveal delay-2">
+        <div class="feat-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+        </div>
+        <h3>Local history, longitudinal AI</h3>
+        <p>Past scans live on-device with AI-generated titles. The next translation reads them too — so trends and recurring values get flagged automatically.</p>
+      </div>
+
+      <!-- Memory -->
+      <div class="feat glass shimmer reveal delay-3">
+        <div class="feat-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 1 16 5.5L21 21l-3.5-2A9 9 0 0 1 3 12z"/></svg>
+        </div>
+        <h3>Memory that grows with you</h3>
+        <p>Mention a medication or family history in any chat; Localabs offers to save it to your profile. Future answers get smarter every visit.</p>
+      </div>
+
+      <!-- Multi-page scanner -->
+      <div class="feat glass shimmer reveal delay-1">
+        <div class="feat-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="14" rx="2"/><circle cx="12" cy="13" r="3.5"/><path d="M8 6l1.5-2h5L16 6"/></svg>
+        </div>
+        <h3>Multi-page scanner</h3>
+        <p>Capture full reports with Apple's native document scanner. Edge detection, perspective correction and retake-per-page are built in.</p>
+      </div>
+
+      <!-- Age-adjusted norms -->
+      <div class="feat feat-wide glass shimmer reveal delay-2">
+        <div class="feat-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a8 8 0 0 1 16 0v1"/></svg>
+        </div>
+        <h3>Age-adjusted reference ranges</h3>
+        <p>HRV, VO₂&nbsp;max, walking speed and sleep are interpreted with age- and biological-sex-bracketed bands from peer-reviewed sources — not generic adult averages.</p>
+      </div>
+
+      <!-- Lasso -->
+      <div class="feat glass shimmer reveal delay-3">
+        <div class="feat-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <ellipse cx="10" cy="9" rx="7" ry="4.5" stroke-dasharray="2 2.5"/>
+            <path d="M13 13.2 L18 21"/>
+            <circle cx="18.5" cy="21" r="1.6"/>
+          </svg>
+        </div>
+        <h3>Lasso any line</h3>
+        <p>Drag a glowing path around any value on the original scan and ask follow-ups. Multiple values come back as a tidy comparison table.</p>
+      </div>
+
+      <!-- Free + iOS -->
+      <div class="feat glass shimmer reveal delay-4">
+        <div class="feat-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18"/><path d="M5 10l7-7 7 7"/></svg>
+        </div>
+        <h3>Free. iOS&nbsp;26.</h3>
+        <p>One download, ~2.5&nbsp;GB for the model. After that, the app works fully offline. No subscription, no in-app upsells.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     PRIVACY — anchor where dark transition happens
+     ============================================================ -->
+<div class="privacy-anchor" id="privacy">
+<section class="privacy">
+  <div class="float-spark" style="top: 12%; left: 10%; animation-delay: 0.5s;" aria-hidden="true"></div>
+  <div class="float-spark" style="bottom: 18%; right: 12%; animation-delay: 2.1s;" aria-hidden="true"></div>
+  <div class="float-spark" style="top: 36%; right: 6%; animation-delay: 1.3s;" aria-hidden="true"></div>
+  <div class="container">
+    <div class="intro">
+      <span class="eyebrow reveal">Privacy by design</span>
+      <h2 class="reveal delay-1">Your lab results never leave your phone.</h2>
+      <p class="reveal delay-2">There is no cloud. No account. No analytics. No telemetry. Localabs ships with a quantized medical-tuned model that runs on your iPhone's Neural Engine and GPU. Every conversation is local — by construction, not by promise.</p>
+    </div>
+
+    <div class="privacy-grid">
+      <div class="priv-tiles">
+
+        <div class="priv-tile glass reveal">
+          <div class="ico">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-12V5l-8-3-8 3v5c0 8 8 12 8 12z"/><path d="M9 12l2 2 4-4"/></svg>
+          </div>
+          <h4>No login. Ever.</h4>
+          <p>No email, no Apple Sign-In, no third-party SSO. Open the app and use it.</p>
+        </div>
+
+        <div class="priv-tile glass reveal delay-1">
+          <div class="ico">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15 15 0 010 20"/><path d="M12 2a15 15 0 000 20"/></svg>
+          </div>
+          <h4>No outbound traffic</h4>
+          <p>One download for the model (~2.5&nbsp;GB) on first launch. After that, airplane mode works fine.</p>
+        </div>
+
+        <div class="priv-tile glass reveal delay-2">
+          <div class="ico">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l5-7 4 5 5-8 4 6"/><path d="M3 21h18"/></svg>
+          </div>
+          <h4>HealthKit, locally</h4>
+          <p>Apple Health metrics are read on-device and folded into the AI prompt — never transmitted, never logged.</p>
+        </div>
+
+        <div class="priv-tile glass reveal delay-3">
+          <div class="ico">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          </div>
+          <h4>Open model</h4>
+          <p>Quantized <code>medgemma-4b-it</code>. Open weights, runs locally via <code>llama.cpp</code> on Metal.</p>
+        </div>
+
+        <div class="priv-tile glass wide reveal delay-4">
+          <div class="ico">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><line x1="2" y1="2" x2="22" y2="22"/></svg>
+          </div>
+          <h4>Zero analytics, zero SDKs</h4>
+          <p>No Firebase, no Sentry, no Mixpanel, no Crashlytics. Nothing reports you. You can verify it: there are no third-party SDKs in the bundle.</p>
+        </div>
+
+      </div>
+
+      <div class="privacy-visual reveal delay-2">
+        <div class="halo"></div>
+        <div class="shield">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-12V5l-8-3-8 3v5c0 8 8 12 8 12z"/><path d="M9 12l2 2 4-4"/></svg>
+        </div>
+        <div class="phone">
+          <div class="notch"></div>
+          <div class="phone-screen">
+            <img src="assets/profile.png" alt="Medical Profile — on-device AI engine, model picker, Apple Health permissions" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+
+<!-- ============================================================
+     TRENDS — under privacy, picks up dark theme
+     ============================================================ -->
+<section class="trends">
+  <div class="float-spark" style="top: 18%; right: 14%; animation-delay: 0.3s;" aria-hidden="true"></div>
+  <div class="float-spark" style="bottom: 22%; left: 8%; animation-delay: 1.9s;" aria-hidden="true"></div>
+  <div class="container">
+    <div class="trends-grid">
+      <div class="trends-visual reveal">
+        <div class="halo"></div>
+        <div class="phone">
+          <div class="notch"></div>
+          <div class="phone-screen">
+            <img src="assets/walking.png" alt="Walking + running trend with daily average and 30-day chart" />
+          </div>
+        </div>
+      </div>
+
+      <div class="trends-copy">
+        <span class="eyebrow reveal">More than translation</span>
+        <h2 class="reveal delay-1">A 30-day picture, on every page.</h2>
+        <p class="lead reveal delay-2">Localabs reads activity, sleep, vitals and mobility from Apple Health and visualizes them with familiar bar and line charts — each banded by age-and-sex norms. Tap any metric to ask the AI what it means for <em>you</em>.</p>
+
+        <div class="metric-tile reveal delay-3" style="margin-top: 28px;">
+          <div style="flex:1">
+            <div><span class="num">1.50</span><span class="unit"> mi</span></div>
+            <div class="desc">Walking + running · last 30 days</div>
+          </div>
+          <span class="badge"><span class="dot"></span>Typical</span>
+        </div>
+        <div class="metric-tile warn reveal delay-4" style="margin-top: 10px;">
+          <div style="flex:1">
+            <div><span class="num">3,347</span><span class="unit"> steps</span></div>
+            <div class="desc">Down 51% vs. prior period</div>
+          </div>
+          <span class="badge"><span class="dot"></span>Borderline</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     FAQ
+     ============================================================ -->
+<section id="faq" class="faq">
+  <div class="float-spark" style="top: 12%; left: 8%; animation-delay: 0.6s;" aria-hidden="true"></div>
+  <div class="float-spark" style="top: 60%; right: 6%; animation-delay: 2.2s;" aria-hidden="true"></div>
+  <div class="container">
+    <div class="intro">
+      <span class="eyebrow reveal">Frequently asked</span>
+      <h2 class="reveal delay-1">Common questions.</h2>
+    </div>
+
+    <div class="faq-list">
+      <div class="faq-item glass reveal">
+        <details>
+          <summary>Does Localabs replace my doctor?
+            <span class="chev"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg></span>
+          </summary>
+          <div class="body">No. Localabs translates lab reports into language you can understand and helps you prepare for the conversation with your clinician. Every report ends with explicit questions to bring up at your next visit.</div>
+        </details>
+      </div>
+      <div class="faq-item glass reveal delay-1">
+        <details>
+          <summary>What lab reports does it work with?
+            <span class="chev"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg></span>
+          </summary>
+          <div class="body">Any printed lab report with test names, values, and reference ranges — CBC, comprehensive metabolic, lipid, thyroid, A1c, vitamin D, and most other standard panels. Multi-page reports are supported via the document scanner.</div>
+        </details>
+      </div>
+      <div class="faq-item glass reveal delay-2">
+        <details>
+          <summary>Why on-device?
+            <span class="chev"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg></span>
+          </summary>
+          <div class="body">Lab data is among the most sensitive personal data you have. Running the AI on your phone means no third party — not even us — ever sees your results.</div>
+        </details>
+      </div>
+      <div class="faq-item glass reveal delay-2">
+        <details>
+          <summary>What model does it use?
+            <span class="chev"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg></span>
+          </summary>
+          <div class="body">By default, Google's MedGemma 4B (a medical-tuned Gemma) quantized to ~2.5&nbsp;GB. A smaller TinyLlama 1.1B is available for development and older devices.</div>
+        </details>
+      </div>
+      <div class="faq-item glass reveal delay-3">
+        <details>
+          <summary>How much storage does it use?
+            <span class="chev"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg></span>
+          </summary>
+          <div class="body">The default model is ~2.5&nbsp;GB, downloaded once. Scanned reports add a few hundred KB each. Everything else (chat state, settings, profile) is tiny.</div>
+        </details>
+      </div>
+      <div class="faq-item glass reveal delay-3">
+        <details>
+          <summary>Does it need an Apple Watch?
+            <span class="chev"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg></span>
+          </summary>
+          <div class="body">No. Phone-only users get steps, walking distance, walking speed, and manually-logged vitals. A paired Watch adds resting HR, HRV, VO₂ max, sleep, and other passive measurements.</div>
+        </details>
+      </div>
+      <div class="faq-item glass reveal delay-4">
+        <details>
+          <summary>Will my profile ever leave my phone?
+            <span class="chev"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg></span>
+          </summary>
+          <div class="body">No. Age, conditions, medications and family history live in your device's secure storage and are read locally each time a chat or analysis runs.</div>
+        </details>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     FINAL CTA
+     ============================================================ -->
+<section id="download" class="final-cta">
+  <div class="float-spark" style="top: 18%; left: 14%; animation-delay: 0.5s;" aria-hidden="true"></div>
+  <div class="float-spark" style="top: 32%; right: 12%; animation-delay: 1.4s;" aria-hidden="true"></div>
+  <div class="float-spark" style="bottom: 28%; left: 22%; animation-delay: 2.1s;" aria-hidden="true"></div>
+  <div class="container-narrow">
+    <h2 class="reveal">Make sense of your <span class="gradient-text">next lab report</span>.</h2>
+    <p class="reveal delay-1">Free. On-device. No account. Available now for iPhone running iOS&nbsp;26 or later.</p>
+    <div class="cta-row reveal delay-2">
+      <a href="#" class="appstore">
+        <span class="glyph">
+          <svg width="24" height="28" viewBox="0 0 384 512" fill="currentColor"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
+        </span>
+        <span class="tags">
+          <span class="sm">Download on the</span>
+          <span class="lg">App&nbsp;Store</span>
+        </span>
+      </a>
+    </div>
+    <div class="badge-row reveal delay-3">
+      <span>iOS&nbsp;26 or later</span>
+      <span class="sep"></span>
+      <span>iPhone · iPad</span>
+      <span class="sep"></span>
+      <span>~2.5&nbsp;GB model</span>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="brand-block">
+        <a href="#top" class="nav-brand" style="font-size: 17px;">
+          <img src="assets/logo-full.png" alt="" style="width:24px;height:24px"/>
+          <span>Localabs</span>
+        </a>
+        <p>Your labs, locally. Built privately. Runs privately.</p>
+      </div>
+      <div>
+        <h5>Product</h5>
+        <ul>
+          <li><a href="#how">How it works</a></li>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#privacy">Privacy</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Open source</h5>
+        <ul>
+          <li><a href="https://github.com/bshihab/localabs" target="_blank" rel="noopener noreferrer">GitHub repo</a></li>
+          <li><a href="https://huggingface.co/unsloth/medgemma-4b-it-GGUF" target="_blank" rel="noopener noreferrer">MedGemma 4B weights</a></li>
+          <li><a href="https://github.com/ggml-org/llama.cpp" target="_blank" rel="noopener noreferrer">llama.cpp</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Contact</h5>
+        <ul>
+          <li><a href="mailto:shihabbilal@gmail.com">shihabbilal@gmail.com</a></li>
+          <li><a href="https://linkedin.com/in/bilalshihab" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Localabs · Built by Bilal Shihab</span>
+      <span>Not a medical device. Not medical advice. Always consult your clinician.</span>
+    </div>
+  </div>
+</footer>
+
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
