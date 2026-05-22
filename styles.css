@@ -325,6 +325,10 @@ p { color: var(--ink-2); }
   margin-top: 18px;
 }
 .hero h1 .line { display: block; }
+/* Reserve space for descenders (the "g" in "English") on the tight
+   0.98 line-height h1 — without this the gradient-text's drop-shadow
+   filter clips the bottom of the last line. */
+.hero h1 .gradient-text { padding-bottom: 0.14em; }
 
 .hero .lead {
   margin-top: 28px;
@@ -953,24 +957,28 @@ p { color: var(--ink-2); }
 }
 .faq-item details[open] summary .chev { transform: rotate(45deg); }
 
-/* Smooth open/close — the UA stylesheet hides non-summary children of
-   a closed <details>, so we force display:block to keep the element
-   in the layout tree while we transition max-height. */
+/* Smooth open/close via the grid 0fr → 1fr trick. The UA stylesheet
+   hides non-summary children of a closed <details>, so we force
+   display:grid to keep .body in the layout tree. Transitioning
+   grid-template-rows interpolates against the *actual* content
+   height, so the easing curve is honored exactly — no dead zone
+   from a fixed max-height ceiling like the old approach had. */
 .faq-item .body {
-  display: block !important;
-  overflow: hidden;
-  max-height: 0;
+  display: grid !important;
+  grid-template-rows: 0fr;
   opacity: 0;
   transition:
-    max-height 0.55s cubic-bezier(0.2, 0.8, 0.2, 1),
-    opacity 0.4s ease;
-  will-change: max-height;
+    grid-template-rows 0.42s cubic-bezier(0.2, 0.8, 0.2, 1),
+    opacity 0.32s ease;
+  will-change: grid-template-rows;
 }
 .faq-item details[open] .body {
-  max-height: 520px;
+  grid-template-rows: 1fr;
   opacity: 1;
 }
 .faq-item .body .inner {
+  overflow: hidden;
+  min-height: 0;
   padding: 0 24px 22px;
   color: var(--ink-2);
   font-size: 0.98rem;
