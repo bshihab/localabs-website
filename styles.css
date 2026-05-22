@@ -199,7 +199,15 @@ p { color: var(--ink-2); }
    ============================================================ */
 
 .glass {
-  background: rgba(var(--glass-tint), var(--glass-tint-alpha));
+  /* Top layer is the dark-mode top-edge refraction — a dim cool-blue
+     glint that scales with --dark, so it's invisible in light mode
+     and quietly visible against dark backgrounds. Bottom layer is
+     the existing tint. */
+  background:
+    linear-gradient(180deg,
+      rgba(120, 170, 230, calc(0.13 * var(--dark))) 0%,
+      rgba(120, 170, 230, 0) 38%),
+    rgba(var(--glass-tint), var(--glass-tint-alpha));
   backdrop-filter: blur(28px) saturate(180%);
   -webkit-backdrop-filter: blur(28px) saturate(180%);
   border: 1px solid var(--glass-border);
@@ -209,7 +217,12 @@ p { color: var(--ink-2); }
   overflow: hidden;
 }
 
-/* Specular highlight + bottom shadow inset on glass */
+/* Specular highlight + bottom shadow inset on glass.
+   The radial / linear gradient here is the bright white refraction
+   used in LIGHT mode. We fully fade it out as --dark approaches 1
+   (was 0.55), because mix-blend-mode: screen against a dark
+   background produces a smudgy bright halo otherwise. The cool-blue
+   dark-mode refraction lives on .glass's background layer above. */
 .glass::before {
   content: "";
   position: absolute; inset: 0;
@@ -219,7 +232,7 @@ p { color: var(--ink-2); }
     radial-gradient(140% 60% at 50% -10%, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0) 60%),
     linear-gradient(180deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0) 30%, rgba(0,0,0,0) 70%, rgba(0,0,0,0.04) 100%);
   mix-blend-mode: screen;
-  opacity: calc(1 - 0.55 * var(--dark));
+  opacity: calc(1 - var(--dark));
 }
 
 .glass-thin {
