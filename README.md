@@ -1,10 +1,4 @@
-# Localabs — Marketing Site Handoff
-
-This bundle contains a **production-ready static marketing site** for Localabs (the on-device medical lab AI iOS app).
-
-> **Important for Claude Code:** Unlike a typical design-handoff bundle, this is NOT a mockup to recreate. The HTML/CSS/JS in this folder is the actual shipping site. Your job is to put it into a git repo and (optionally) hook up a deploy target — not to rebuild it in a framework.
-
----
+# Localabs — Marketing Site
 
 ## What's in this bundle
 
@@ -28,62 +22,6 @@ design_handoff_marketing_site/
 │   └── edit-profile.png      (Edit Profile sheet — currently unused)
 └── README.md         ← this file
 ```
-
-No build step. No `package.json`. No node_modules. Open `index.html` in a browser — it works.
-
----
-
-## How to put this in a git repo
-
-```bash
-# 1. cd into a folder where you want the repo to live
-cd ~/code
-
-# 2. Make the repo folder and copy the bundle in
-mkdir localabs-website
-cp -R /path/to/design_handoff_marketing_site/* localabs-website/
-cd localabs-website
-
-# 3. Init git, first commit
-git init -b main
-git add .
-git commit -m "Initial commit — Localabs marketing site"
-
-# 4. Create the GitHub repo and push
-gh repo create localabs-website --public --source=. --remote=origin --push
-# (or do it through the GitHub UI, then `git remote add origin <url>` + `git push -u origin main`)
-```
-
----
-
-## How to deploy
-
-Any static host works. Three easiest paths:
-
-### Option A — GitHub Pages (free, fastest)
-
-After pushing to GitHub:
-- Repo settings → Pages → Source: `main` branch, `/` (root) → Save.
-- Site goes live at `https://<your-username>.github.io/localabs-website/` in ~30 seconds.
-
-### Option B — Vercel (free, custom domain)
-
-```bash
-npm install -g vercel
-vercel
-# follow prompts; deploys in ~10 seconds, gives you a *.vercel.app URL
-```
-
-Vercel will auto-redeploy on every `git push`.
-
-### Option C — Netlify (free, custom domain)
-
-Drag-and-drop the bundle folder onto [app.netlify.com/drop](https://app.netlify.com/drop) — instant deploy.
-Or `npx netlify-cli deploy --prod --dir=.` from inside the repo.
-
-For a custom domain (e.g. `localabs.app`), all three options let you add one via their dashboard and they handle SSL automatically.
-
----
 
 ## Architecture at a glance
 
