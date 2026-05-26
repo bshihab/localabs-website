@@ -72,4 +72,4 @@ design_handoff_marketing_site/
 
 ### Contact
 
-Built by Bilal Shihab — shihabbilal@gmail.com — [linkedin.com/in/bilalshihab](https://linkedin.com/in/bilalshihab).
+Built by Bilal Shihab — [support@localabs.app](mailto:support@localabs.app) — [linkedin.com/in/bilalshihab](https://linkedin.com/in/bilalshihab).
