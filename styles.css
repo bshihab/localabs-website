@@ -44,6 +44,10 @@ html {
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
   background: var(--bg);
+  /* Mirror body's horizontal clip on <html> too — without this, parallax
+     transforms and orb / drop-shadow bleed can push the document wider
+     than the viewport on iOS Safari, producing a phantom side-scroll. */
+  overflow-x: clip;
 }
 
 body {
@@ -313,6 +317,13 @@ p { color: var(--ink-2); }
 @media (max-width: 720px) {
   .nav-links { display: none; }
   .nav { padding-left: 12px; }
+  /* Mobile backdrops can be visually busy (orbs, halos, gradients)
+     showing through the nav's translucent pill — bump the tint
+     opacity so the pill reliably reads as a separate layer above
+     the content. */
+  .nav {
+    background: rgba(var(--glass-tint), calc(var(--glass-tint-alpha) + 0.32));
+  }
 }
 
 /* ============================================================
@@ -407,6 +418,11 @@ p { color: var(--ink-2); }
   position: relative;
   aspect-ratio: 4/5;
   min-height: 560px;
+  /* Clip the orbs / chip drop-shadow so they can't bleed past the
+     hero's column on narrow screens (was causing horizontal scroll
+     + visual overlap with the fixed nav). */
+  overflow: clip;
+  border-radius: 28px;
 }
 
 .orb {
@@ -484,8 +500,14 @@ p { color: var(--ink-2); }
 }
 .phone .notch {
   position: absolute;
-  top: 14px; left: 50%; transform: translateX(-50%);
-  width: 96px; height: 26px; border-radius: 999px;
+  top: 4.5%; left: 50%; transform: translateX(-50%);
+  /* Was 96×26px fixed — meant the notch looked like a regular notch
+     at the 280px hero phone but ballooned to nearly half the phone
+     width when the phone scaled down on mobile. Sizing it by % of the
+     phone keeps the dynamic-island proportion consistent at every
+     breakpoint. */
+  width: 34%; aspect-ratio: 3.7 / 1;
+  border-radius: 999px;
   background: #000; z-index: 4;
 }
 .phone-screen {
@@ -522,9 +544,9 @@ p { color: var(--ink-2); }
 .phone-sm::before { border-radius: 36px; }
 .phone-sm .phone-screen { border-radius: 30px; }
 .phone-sm .notch {
-  top: 10px;
-  width: 58px; height: 18px;
-  border-radius: 999px;
+  /* Inherit percentage sizing from .phone .notch — only override the
+     top offset so the smaller bezel still looks proportional. */
+  top: 3.5%;
 }
 
 @keyframes floaty-phone {
@@ -800,6 +822,10 @@ p { color: var(--ink-2); }
 .privacy {
   padding: 200px 0 160px;
   position: relative;
+  /* Float-sparks + shield + privacy-visual halo all use absolute
+     positioning — keep them inside the section so they can't
+     visually overlap the fixed nav on short mobile viewports. */
+  overflow: clip;
 }
 .privacy .intro {
   text-align: center;
@@ -915,6 +941,9 @@ p { color: var(--ink-2); }
 
 .trends {
   padding: 120px 0;
+  /* Halo + parallax-translated phone column can bleed sideways on
+     narrow screens — clip here too. */
+  overflow: clip;
 }
 .trends-grid {
   display: grid; grid-template-columns: 0.95fr 1.05fr; gap: 64px; align-items: center;
