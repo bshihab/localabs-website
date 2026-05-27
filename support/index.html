@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#FAFBFD" />
+<title>Support — Localabs</title>
+<meta name="description" content="Help, FAQs, and contact for Localabs — the on-device AI that translates your lab reports into plain English." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../styles.css" />
+<link rel="icon" type="image/png" href="../assets/logo-full.png" />
+
+<style>
+  /* Doc-page layout — content-first, no parallax / orbs. */
+  .doc { padding: 140px 0 80px; }
+  .doc .container { max-width: 760px; }
+  .doc .eyebrow { color: var(--blue-600); margin-bottom: 16px; }
+  .doc h1 {
+    font-size: clamp(2.4rem, 4.5vw, 3.6rem);
+    line-height: 1.05;
+    letter-spacing: -0.04em;
+    margin-bottom: 24px;
+  }
+  .doc .lead {
+    font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+    color: var(--ink-2);
+    max-width: 60ch;
+    margin-bottom: 56px;
+  }
+  .doc h2 {
+    font-size: clamp(1.3rem, 2vw, 1.6rem);
+    letter-spacing: -0.025em;
+    margin-top: 56px;
+    margin-bottom: 14px;
+  }
+  .doc h3 {
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-top: 26px;
+    margin-bottom: 6px;
+    color: var(--ink);
+  }
+  .doc p, .doc li {
+    color: var(--ink-2);
+    font-size: 1rem;
+    line-height: 1.65;
+  }
+  .doc p { margin-bottom: 14px; }
+  .doc ul { margin: 8px 0 18px 22px; }
+  .doc ul li { margin-bottom: 6px; }
+  .doc a { color: var(--blue-600); text-decoration: none; }
+  .doc a:hover { text-decoration: underline; }
+  .doc code {
+    font-family: var(--font-mono);
+    font-size: 0.88rem;
+    padding: 2px 6px;
+    border-radius: 5px;
+    background: rgba(0, 122, 255, 0.08);
+    color: var(--blue-600);
+  }
+  .contact-card {
+    margin: 36px 0;
+    padding: 28px;
+    border-radius: 18px;
+    border: 1px solid var(--hairline);
+    background: rgba(var(--glass-tint), calc(var(--glass-tint-alpha) - 0.10));
+  }
+  .contact-card .label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin-bottom: 8px;
+  }
+  .contact-card a {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .doc .meta {
+    margin-top: 80px;
+    padding-top: 28px;
+    border-top: 1px solid var(--hairline);
+    font-size: 0.88rem;
+    color: var(--ink-3);
+  }
+</style>
+</head>
+<body>
+
+<div class="world" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<div class="nav-shell" role="navigation" aria-label="Primary">
+  <div class="nav glass">
+    <a href="../" class="nav-brand">
+      <img src="../assets/logo-full.png" alt="" />
+      <span>Localabs</span>
+    </a>
+    <div class="nav-links">
+      <a href="../#how">How it works</a>
+      <a href="../#features">Features</a>
+      <a href="../#privacy">Privacy</a>
+      <a href="../#faq">FAQ</a>
+    </div>
+    <a href="../#download" class="nav-cta">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v14"/><path d="M6 13l6 6 6-6"/><path d="M5 21h14"/></svg>
+      Download
+    </a>
+  </div>
+</div>
+
+<main class="doc">
+  <div class="container">
+    <span class="eyebrow">Support</span>
+    <h1>How can we help?</h1>
+    <p class="lead">Localabs is a small, privacy-first project. If something isn't working, or you have feedback, the fastest way to reach us is by email — usually the same day.</p>
+
+    <div class="contact-card">
+      <div class="label">Contact</div>
+      <a href="mailto:support@localabs.app">support@localabs.app</a>
+    </div>
+
+    <h2>Common questions</h2>
+
+    <h3>Why is the app taking a long time to set up the first time?</h3>
+    <p>The first launch downloads the on-device AI model (~2.5 GB) from Hugging Face. On a strong Wi-Fi connection this usually takes 5–15 minutes. The download survives backgrounding and app suspension — you can lock your phone and come back later. After that one-time download, Localabs works fully offline.</p>
+
+    <h3>The app says my phone isn't supported.</h3>
+    <p>Localabs requires <strong>iPhone 15 Pro or later</strong>. The 4B medical model and its KV cache need at least 8 GB of RAM, which the A16 generation and earlier don't have. This is the same hardware floor Apple uses for Apple Intelligence.</p>
+
+    <h3>The AI's answer sounds wrong or contradicts my doctor.</h3>
+    <p>Localabs is an <strong>educational translation tool, not a diagnostic</strong>. The model can make mistakes. Every translated report ends with questions to raise with a clinician — treat those as the starting point of a conversation with your care team, not a verdict. If a translation seems off, please email us with the symptom (you can describe it in plain text; we don't need your scan).</p>
+
+    <h3>How do I delete my data?</h3>
+    <p>Open the <strong>Profile</strong> tab and tap <strong>Reset App</strong>. This wipes every scan, every chat, your medical profile, and the on-device AI model from your phone. To uninstall the app entirely, long-press the icon on your home screen and tap <strong>Remove App</strong>.</p>
+
+    <h3>Does Localabs share my data with anyone?</h3>
+    <p>No. Lab reports never leave your device. Apple Health data is read locally and used as silent context inside the AI prompt — it isn't transmitted, logged, or shared. There are no analytics SDKs, no crash reporters, no third-party trackers in the bundle. The only network traffic is the one-time model download from Hugging Face on first launch.</p>
+
+    <h3>Why does it ask for Apple Health access?</h3>
+    <p>Apple Health is optional. When granted, Localabs reads daily averages for activity, sleep, vitals, and mobility from the past 30 days and folds them into the AI's analysis as personalization context — so a borderline cholesterol number gets interpreted alongside your steps and resting heart rate. If you decline, the app works fine; you just lose the personalized context.</p>
+
+    <h3>Can I use Localabs without an internet connection?</h3>
+    <p>Yes, after the first launch. Once the model has finished downloading, the entire app runs offline: scanning, OCR, AI translation, follow-up chats, Trends — none of it requires the network.</p>
+
+    <h3>I have a feature request or feedback.</h3>
+    <p>Email <a href="mailto:support@localabs.app">support@localabs.app</a> — every message goes to the developer directly. We read all of them, even if a reply takes a few days.</p>
+
+    <h3>Found a bug?</h3>
+    <p>Email us with: the model of iPhone, your iOS version, what you were doing when it happened, and a screenshot if you can. You don't need to share your lab report — describe the issue and we can usually reproduce it on test data.</p>
+
+    <h2>Important reminder</h2>
+    <p>Localabs is not a medical device and does not provide medical advice, diagnosis, or treatment. It is a translation and education tool. Always consult a licensed healthcare professional for decisions about your health.</p>
+
+    <div class="meta">
+      <p>Last updated: May 2026 · <a href="../">Back to Localabs</a> · <a href="../privacy/">Privacy Policy</a></p>
+    </div>
+  </div>
+</main>
+
+</body>
+</html>

@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#FAFBFD" />
+<title>Privacy Policy — Localabs</title>
+<meta name="description" content="Localabs runs entirely on your iPhone. No cloud, no account, no analytics. Read the full privacy policy." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../styles.css" />
+<link rel="icon" type="image/png" href="../assets/logo-full.png" />
+
+<style>
+  .doc { padding: 140px 0 80px; }
+  .doc .container { max-width: 760px; }
+  .doc .eyebrow { color: var(--blue-600); margin-bottom: 16px; }
+  .doc h1 {
+    font-size: clamp(2.4rem, 4.5vw, 3.6rem);
+    line-height: 1.05;
+    letter-spacing: -0.04em;
+    margin-bottom: 24px;
+  }
+  .doc .lead {
+    font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+    color: var(--ink-2);
+    max-width: 60ch;
+    margin-bottom: 56px;
+  }
+  .doc h2 {
+    font-size: clamp(1.3rem, 2vw, 1.6rem);
+    letter-spacing: -0.025em;
+    margin-top: 56px;
+    margin-bottom: 14px;
+  }
+  .doc p, .doc li {
+    color: var(--ink-2);
+    font-size: 1rem;
+    line-height: 1.65;
+  }
+  .doc p { margin-bottom: 14px; }
+  .doc ul { margin: 8px 0 18px 22px; }
+  .doc ul li { margin-bottom: 8px; }
+  .doc a { color: var(--blue-600); text-decoration: none; }
+  .doc a:hover { text-decoration: underline; }
+  .doc strong { color: var(--ink); }
+  .doc .meta {
+    margin-top: 80px;
+    padding-top: 28px;
+    border-top: 1px solid var(--hairline);
+    font-size: 0.88rem;
+    color: var(--ink-3);
+  }
+  .tldr {
+    margin: 0 0 36px;
+    padding: 24px 28px;
+    border-radius: 18px;
+    border: 1px solid var(--hairline);
+    background: rgba(var(--glass-tint), calc(var(--glass-tint-alpha) - 0.10));
+  }
+  .tldr h3 {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--blue-600);
+    margin-bottom: 14px;
+  }
+  .tldr p { font-size: 1.05rem; color: var(--ink); margin: 0; }
+</style>
+</head>
+<body>
+
+<div class="world" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<div class="nav-shell" role="navigation" aria-label="Primary">
+  <div class="nav glass">
+    <a href="../" class="nav-brand">
+      <img src="../assets/logo-full.png" alt="" />
+      <span>Localabs</span>
+    </a>
+    <div class="nav-links">
+      <a href="../#how">How it works</a>
+      <a href="../#features">Features</a>
+      <a href="../#privacy">Privacy</a>
+      <a href="../#faq">FAQ</a>
+    </div>
+    <a href="../#download" class="nav-cta">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v14"/><path d="M6 13l6 6 6-6"/><path d="M5 21h14"/></svg>
+      Download
+    </a>
+  </div>
+</div>
+
+<main class="doc">
+  <div class="container">
+    <span class="eyebrow">Privacy Policy</span>
+    <h1>Your lab results never leave your phone.</h1>
+    <p class="lead">Localabs is built so that we — the developer — cannot see your data, even in principle. There is no server to host it on. This policy explains exactly what that means in practice.</p>
+
+    <div class="tldr">
+      <h3>The short version</h3>
+      <p>Localabs collects no personal information, runs entirely on your device, and shares nothing with us or any third party. The only network call the app ever makes is a one-time download of the AI model file (~2.5 GB) from Hugging Face on first launch.</p>
+    </div>
+
+    <h2>1. Who we are</h2>
+    <p>Localabs is published by Bithunch LLC. You can contact us at <a href="mailto:support@localabs.app">support@localabs.app</a>.</p>
+
+    <h2>2. What data Localabs processes</h2>
+    <p>Localabs reads and processes the following data, <strong>entirely on your iPhone</strong>:</p>
+    <ul>
+      <li><strong>Lab reports and clinical notes</strong> you scan, photograph, or import as PDFs. These are stored locally inside the app's sandbox.</li>
+      <li><strong>Apple Health data</strong> (activity, sleep, vitals, mobility, body metrics) if you grant HealthKit permission. Data is read on-device and only ever used as silent context for the AI's analysis. It is never written to disk by Localabs.</li>
+      <li><strong>Profile information</strong> you choose to enter — age, biological sex, blood type, medications, conditions, lifestyle. Stored locally in the app's sandbox.</li>
+      <li><strong>Chat history</strong> between you and the on-device AI. Stored locally and deleted when you delete the associated report.</li>
+    </ul>
+
+    <h2>3. What Localabs does NOT do</h2>
+    <ul>
+      <li><strong>No account, no sign-in.</strong> Localabs requires no email, no Apple ID, no social SSO. We don't know who you are.</li>
+      <li><strong>No analytics or telemetry.</strong> There is no Firebase, no Mixpanel, no Sentry, no Amplitude, no Crashlytics, no Meta SDK, no Google SDK, and no first-party analytics bundled with the app.</li>
+      <li><strong>No advertising.</strong> Localabs does not show ads and does not share data with any advertising network.</li>
+      <li><strong>No data sales.</strong> We have no data about you to sell.</li>
+      <li><strong>No tracking across apps or websites.</strong> Localabs does not use Apple's App Tracking Transparency framework because it never tracks you.</li>
+    </ul>
+
+    <h2>4. The on-device AI</h2>
+    <p>The medical AI model Localabs uses (a quantized version of Google's MedGemma 4B) runs locally on your iPhone's GPU using the open-source <code>llama.cpp</code> runtime. Every translation, every chat reply, and every Trends interpretation happens on your device. Your prompts and the model's responses never leave your phone.</p>
+
+    <h2>5. Network access</h2>
+    <p>Localabs makes network requests in exactly one situation: the first time you launch it (or the first time you switch models), the app downloads the model weights file from Hugging Face. Hugging Face will see this request like any other file download — your IP address may appear in their CDN logs as a standard side effect of HTTP. Once downloaded, the model lives on your device and the app does not contact the network again.</p>
+
+    <h2>6. Apple Health (HealthKit)</h2>
+    <p>If you grant HealthKit access, Localabs reads the following metric categories from the past ~30 days: activity (steps, distance, exercise minutes), sleep, vitals (resting heart rate, HRV), mobility (walking speed, stair climbing), and body metrics. These values are folded into the AI's analysis prompt as silent context and are never quoted as findings, stored on disk by Localabs, or transmitted anywhere. If you revoke permission later in Settings, Localabs immediately stops reading them.</p>
+
+    <h2>7. Children's privacy</h2>
+    <p>Localabs is intended for adults interpreting their own medical results. It is not directed at children under 13 and we do not knowingly collect data from children.</p>
+
+    <h2>8. Your rights and choices</h2>
+    <p>Because Localabs holds no data about you on any server, traditional rights like "data export" or "right to deletion" are satisfied locally on your device:</p>
+    <ul>
+      <li><strong>Delete a single scan:</strong> open History, swipe or long-press the report, choose Delete.</li>
+      <li><strong>Delete everything:</strong> Profile → Reset App. This wipes every scan, every chat, your profile, and the AI model.</li>
+      <li><strong>Uninstall:</strong> long-press the app icon on your home screen and choose Remove App. iOS deletes the entire sandbox.</li>
+    </ul>
+
+    <h2>9. Security</h2>
+    <p>All data Localabs writes is stored inside iOS's app sandbox and protected by the operating system's Data Protection class (encrypted at rest when your device is locked with a passcode or biometric). Localabs does not implement its own server or cloud backup.</p>
+
+    <h2>10. Changes to this policy</h2>
+    <p>If we update this policy, the new version will be posted at this URL with an updated "Last updated" date. Material changes will also be noted in the app's release notes.</p>
+
+    <h2>11. Contact</h2>
+    <p>Questions about privacy, or this policy: <a href="mailto:support@localabs.app">support@localabs.app</a>.</p>
+
+    <div class="meta">
+      <p>Last updated: May 2026 · <a href="../">Back to Localabs</a> · <a href="../support/">Support</a></p>
+    </div>
+  </div>
+</main>
+
+</body>
+</html>
