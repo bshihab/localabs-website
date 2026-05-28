@@ -418,11 +418,10 @@ p { color: var(--ink-2); }
   position: relative;
   aspect-ratio: 4/5;
   min-height: 560px;
-  /* Clip the orbs / chip drop-shadow so they can't bleed past the
-     hero's column on narrow screens (was causing horizontal scroll
-     + visual overlap with the fixed nav). */
-  overflow: clip;
-  border-radius: 28px;
+  /* No overflow clip here — the hero-phone is intentionally taller
+     than the stage and the hero-chip's drop-shadow needs to extend
+     past the stage edge. The page-level overflow-x: clip on html
+     handles any horizontal bleed at the viewport edge. */
 }
 
 .orb {
@@ -500,12 +499,12 @@ p { color: var(--ink-2); }
 }
 .phone .notch {
   position: absolute;
-  top: 4.5%; left: 50%; transform: translateX(-50%);
-  /* Was 96×26px fixed — meant the notch looked like a regular notch
-     at the 280px hero phone but ballooned to nearly half the phone
-     width when the phone scaled down on mobile. Sizing it by % of the
-     phone keeps the dynamic-island proportion consistent at every
-     breakpoint. */
+  /* Percentage top relative to phone height. Phone aspect is 9/19.5,
+     so 2.3% ≈ 14px on the 280×606 hero phone (the original baked-in
+     offset) and scales proportionally as the phone shrinks on mobile.
+     Width is percentage too so the dynamic-island stays balanced at
+     every breakpoint instead of ballooning to half the bezel. */
+  top: 2.3%; left: 50%; transform: translateX(-50%);
   width: 34%; aspect-ratio: 3.7 / 1;
   border-radius: 999px;
   background: #000; z-index: 4;
@@ -544,9 +543,9 @@ p { color: var(--ink-2); }
 .phone-sm::before { border-radius: 36px; }
 .phone-sm .phone-screen { border-radius: 30px; }
 .phone-sm .notch {
-  /* Inherit percentage sizing from .phone .notch — only override the
-     top offset so the smaller bezel still looks proportional. */
-  top: 3.5%;
+  /* Smaller bezel has 6px padding instead of 8px, so the notch sits
+     marginally higher — but the 2.3% on .phone is a good base for
+     both, so no need to override here. */
 }
 
 @keyframes floaty-phone {
@@ -683,7 +682,18 @@ p { color: var(--ink-2); }
   margin-top: auto;
   min-height: 200px;
 }
-.how-tile .tile-stage .phone { width: 78%; max-width: 220px; }
+.how-tile .tile-stage .phone {
+  /* Use max-height as the dominant constraint so the phone fits
+     fully inside the tile-stage instead of bleeding past the bottom
+     bezel (the .how-tile has overflow: hidden, which was clipping
+     the lower third of the phone and making the screenshot look
+     like it continued past the rounded corners). Aspect-ratio
+     resolves the width from height automatically. */
+  width: auto;
+  height: auto;
+  max-height: 360px;
+  max-width: 220px;
+}
 .how-tile .tile-stage .halo {
   position: absolute; inset: 8%;
   background: radial-gradient(closest-side, rgba(0,122,255,0.20), transparent 70%);
@@ -1135,7 +1145,14 @@ p { color: var(--ink-2); }
 .press .marks .item svg { color: var(--ink-3); }
 
 @media (max-width: 700px) {
-  .press-inner { padding: 18px 22px; }
+  .press-inner {
+    padding: 18px 22px;
+    /* When content wraps onto multiple lines on mobile, the 999px
+       pill radius produces giant half-circle caps that eat into the
+       text. Drop to a sensible rounded-rect radius once we're at
+       phone widths. */
+    border-radius: 22px;
+  }
   .press .marks { gap: 24px; font-size: 0.95rem; }
 }
 
@@ -1613,7 +1630,12 @@ p { color: var(--ink-2); }
   .how-tiles { gap: 14px; }
   .how-tile { padding: 22px; }
   .how-tile .tile-stage { min-height: 280px; }
-  .how-tile .tile-stage .phone { width: 65%; max-width: 200px; }
+  .how-tile .tile-stage .phone {
+    /* Tighter cap on mobile so the phone fits inside the shorter
+       tile-stage without bottom-clipping. */
+    max-height: 320px;
+    max-width: 180px;
+  }
 
   .features { padding: 80px 0; }
   .features .section-head { margin-bottom: 32px; }
@@ -1640,7 +1662,7 @@ p { color: var(--ink-2); }
   .footer-inner { grid-template-columns: 1fr; gap: 28px; }
   .footer-bottom { flex-direction: column; gap: 12px; align-items: flex-start; }
 
-  .press-inner { padding: 18px 20px; gap: 18px; }
+  .press-inner { padding: 18px 20px; gap: 18px; border-radius: 20px; }
   .press .marks { gap: 16px; font-size: 0.92rem; }
   .press .label { font-size: 10px; }
 
