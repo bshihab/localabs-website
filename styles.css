@@ -1711,6 +1711,12 @@ p { color: var(--ink-2); }
   .press .label { font-size: 10px; }
 
   .cta-row { flex-direction: column; align-items: stretch; gap: 10px; }
+  /* The hero cta-row has two stacked buttons that should fill the
+     column for thumb reach. The final-cta cta-row has a single
+     .appstore badge — stretching it to full width and left-aligning
+     its icon + text reads as broken. Override to center it at its
+     natural pill width instead. */
+  .final-cta .cta-row { align-items: center; }
   .btn-primary, .btn-ghost { justify-content: center; }
   .hero-meta { gap: 14px; }
   .hero-meta span { font-size: 12px; }
