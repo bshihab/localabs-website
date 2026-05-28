@@ -557,6 +557,12 @@ p { color: var(--ink-2); }
   .hero-inner { grid-template-columns: 1fr; gap: 24px; }
   .hero-stage { min-height: 500px; max-width: 480px; margin: 0 auto; }
   .hero { padding-top: 110px; }
+  /* Shrink the floating phone so its top edge doesn't extend
+     above the stage and under the (now more opaque) nav pill.
+     At default 64%/320px the phone height (665px) exceeds the
+     stage height (600px) at this breakpoint, causing the top to
+     drift behind the nav. 54% / 260px keeps it inside the stage. */
+  .hero-phone { width: 54%; max-width: 260px; }
 }
 
 /* ============================================================
@@ -1613,7 +1619,10 @@ p { color: var(--ink-2); }
   .hero { padding: 100px 0 48px; }
   .hero-stage { min-height: 380px; }
   .hero-chip { width: 32%; top: 4%; left: 8%; }
-  .hero-phone { width: 60%; right: 2%; bottom: 2%; }
+  /* Further shrink so the phone sits entirely inside the stage on
+     true phone-sized screens, leaving margin between its top edge
+     and the nav pill. */
+  .hero-phone { width: 48%; max-width: 210px; right: 2%; bottom: 2%; }
   .phone { width: 100%; }
 
   section { padding: 60px 0; }
