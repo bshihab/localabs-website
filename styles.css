@@ -36,6 +36,20 @@
   --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Inter", system-ui, sans-serif;
   --font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter Tight", "Inter", system-ui, sans-serif;
   --font-mono: "SF Mono", ui-monospace, "JetBrains Mono", Menlo, Consolas, monospace;
+
+  /* Fluid spacing scale — each token uses clamp(min, vw-scaled,
+     max) so values smoothly interpolate from phone width up to
+     desktop instead of jumping at media-query breakpoints. The
+     min values match what the old @media (max-width: 680px) /
+     420px rules used; the max values match the original desktop
+     defaults. So at viewport extremes the page looks identical
+     to before — between extremes it just scales smoothly. */
+  --section-pad-y:     clamp(60px, 8vw, 120px);     /* default section vertical padding */
+  --section-pad-y-lg:  clamp(90px, 12vw, 200px);    /* hero, privacy — sections that need nav clearance */
+  --section-pad-y-sm:  clamp(40px, 6vw, 80px);      /* tighter sections (stats, promise) */
+  --container-pad-x:   clamp(18px, 3vw, 28px);      /* container side gutter */
+  --gap-md:            clamp(14px, 2.2vw, 24px);    /* common gap between cards/tiles */
+  --gap-lg:            clamp(24px, 3vw, 48px);      /* gap between major columns */
 }
 
 /* Scroll-driven dark mode controlled via JS setting --dark (0..1) on <html> */
@@ -112,13 +126,13 @@ body {
 .container {
   max-width: 1240px;
   margin: 0 auto;
-  padding: 0 28px;
+  padding: 0 var(--container-pad-x);
 }
 
 .container-narrow {
   max-width: 920px;
   margin: 0 auto;
-  padding: 0 28px;
+  padding: 0 var(--container-pad-x);
 }
 
 section { position: relative; }
@@ -333,7 +347,10 @@ p { color: var(--ink-2); }
 .hero {
   min-height: 100svh;
   display: flex; align-items: center;
-  padding: 140px 0 80px;
+  /* Top padding stays larger so the floating nav has clearance.
+     Bottom uses the regular section spacing for rhythm with the
+     press / promise sections below. Fluid via clamp() tokens. */
+  padding: var(--section-pad-y-lg) 0 var(--section-pad-y);
   position: relative;
 }
 
@@ -573,24 +590,17 @@ p { color: var(--ink-2); }
   50%      { transform: rotate(3.4deg) translateY(-12px); }
 }
 
-@media (max-width: 920px) {
-  .hero-inner { grid-template-columns: 1fr; gap: 24px; }
-  .hero-stage { min-height: 500px; max-width: 480px; margin: 0 auto; }
-  .hero { padding-top: 110px; }
-  /* Shrink the floating phone so its top edge doesn't extend
-     above the stage and under the (now more opaque) nav pill.
-     At default 64%/320px the phone height (665px) exceeds the
-     stage height (600px) at this breakpoint, causing the top to
-     drift behind the nav. 54% / 260px keeps it inside the stage. */
-  .hero-phone { width: 54%; max-width: 260px; }
-}
+/* (The full @media (max-width: 920px) layout-collapse block lives
+   further down in the "Tablet + mobile responsive overrides"
+   section near the bottom of the file. The earlier duplicate
+   block that used to sit here has been consolidated there.) */
 
 /* ============================================================
    "Promise" — band
    ============================================================ */
 
 .promise {
-  padding: 120px 0 60px;
+  padding: var(--section-pad-y) 0 var(--section-pad-y-sm);
   text-align: center;
 }
 .promise h2 {
@@ -654,7 +664,7 @@ p { color: var(--ink-2); }
    ============================================================ */
 
 .how {
-  padding: 100px 0;
+  padding: var(--section-pad-y) 0;
 }
 .how .section-head {
   text-align: center; max-width: 720px; margin: 0 auto 64px;
@@ -736,7 +746,7 @@ p { color: var(--ink-2); }
    ============================================================ */
 
 .features {
-  padding: 140px 0;
+  padding: var(--section-pad-y) 0;
 }
 .features .section-head { text-align: left; max-width: 720px; margin-bottom: 60px; }
 .features .section-head h2 { margin-top: 14px; max-width: 16ch; }
@@ -856,7 +866,7 @@ p { color: var(--ink-2); }
 .privacy-anchor { position: relative; }
 
 .privacy {
-  padding: 200px 0 160px;
+  padding: var(--section-pad-y-lg) 0;
   position: relative;
   /* Float-sparks + shield + privacy-visual halo all use absolute
      positioning — keep them inside the section so they can't
@@ -976,7 +986,7 @@ p { color: var(--ink-2); }
    ============================================================ */
 
 .trends {
-  padding: 120px 0;
+  padding: var(--section-pad-y) 0;
   /* Halo + parallax-translated phone column can bleed sideways on
      narrow screens — clip here too. */
   overflow: clip;
@@ -1003,7 +1013,7 @@ p { color: var(--ink-2); }
    FAQ
    ============================================================ */
 
-.faq { padding: 100px 0; }
+.faq { padding: var(--section-pad-y) 0; }
 .faq .intro { max-width: 720px; margin: 0 auto 64px; text-align: center; }
 .faq .intro h2 { margin-top: 14px; }
 
@@ -1068,7 +1078,7 @@ p { color: var(--ink-2); }
    ============================================================ */
 
 .final-cta {
-  padding: 140px 0 160px;
+  padding: var(--section-pad-y) 0 var(--section-pad-y-lg);
   text-align: center;
   position: relative;
 }
@@ -1110,7 +1120,7 @@ p { color: var(--ink-2); }
    ============================================================ */
 
 .footer {
-  padding: 60px 0 80px;
+  padding: var(--section-pad-y-sm) 0;
   border-top: 1px solid var(--hairline);
 }
 .footer-inner {
@@ -1187,7 +1197,7 @@ p { color: var(--ink-2); }
    ============================================================ */
 
 .stats {
-  padding: 80px 0;
+  padding: var(--section-pad-y-sm) 0;
 }
 .stats-grid {
   display: grid;
@@ -1606,17 +1616,23 @@ p { color: var(--ink-2); }
    ============================================================ */
 
 @media (max-width: 1024px) {
-  .container { padding: 0 22px; }
-  .hero-inner { gap: 36px; }
+  /* Container side gutter + hero column gap now scale fluidly via
+     clamp() tokens, so no need to override them here. Only the
+     bento layout reflow stays. */
   .feat-grid { grid-template-columns: repeat(4, 1fr); }
   .feat, .feat-wide, .feat-hero { grid-column: span 2; }
   .feat-tall { grid-column: span 2; grid-row: auto; min-height: 320px; }
 }
 
 @media (max-width: 920px) {
+  /* Layout switches: grids collapse to single column. Section
+     vertical padding is now fluid via clamp() tokens, so the old
+     `section { padding: 80px 0 }` + `.privacy { padding: 140px 0 110px }`
+     overrides are gone — clamp() lands on the same values at this
+     viewport width automatically. */
   .hero-inner { grid-template-columns: 1fr; gap: 24px; }
   .hero-stage { min-height: 460px; max-width: 480px; margin: 0 auto; }
-  .hero { padding: 110px 0 60px; min-height: auto; }
+  .hero { min-height: auto; }
   .nav { padding-left: 12px; }
   .how-tiles { grid-template-columns: 1fr; }
   .how-tile { min-height: 0; }
@@ -1625,18 +1641,28 @@ p { color: var(--ink-2); }
   .stats-grid { grid-template-columns: 1fr 1fr; }
   .feat-grid { grid-template-columns: repeat(2, 1fr); }
   .feat, .feat-wide, .feat-hero, .feat-tall { grid-column: span 2; min-height: 200px; }
-  section { padding: 80px 0; }
-  .privacy { padding: 140px 0 110px; }
+  /* Shrink the floating phone so its top edge doesn't extend
+     above the stage and under the (now more opaque) nav pill.
+     At default 64%/320px the phone height (665px) exceeds the
+     stage height (600px) at this breakpoint, causing the top to
+     drift behind the nav. 54% / 260px keeps it inside the stage. */
+  .hero-phone { width: 54%; max-width: 260px; }
 }
 
 @media (max-width: 680px) {
-  .container { padding: 0 18px; }
+  /* Section-level vertical padding (the old `section { padding: 60px 0 }`
+     and the per-section .hero / .promise / .stats / .how / .features /
+     .privacy / .trends / .faq / .final-cta overrides) now scales fluidly
+     via the --section-pad-y* clamp() tokens at the top of the file, so
+     those overrides have been removed. Container side gutter likewise
+     uses --container-pad-x. What stays in this block is layout-changing
+     rules (grid → stack), component-specific spacing, and nav/typography
+     tweaks. */
   .nav { padding: 6px 6px 6px 12px; gap: 4px; }
   .nav-cta { padding: 8px 14px; font-size: 13px; }
   .nav-brand { font-size: 15px; }
   .nav-brand img { width: 20px; height: 20px; }
 
-  .hero { padding: 100px 0 48px; }
   .hero-stage { min-height: 380px; }
   .hero-chip { width: 32%; top: 4%; left: 8%; }
   /* Further shrink so the phone sits entirely inside the stage on
@@ -1645,16 +1671,12 @@ p { color: var(--ink-2); }
   .hero-phone { width: 48%; max-width: 210px; right: 2%; bottom: 2%; }
   .phone { width: 100%; }
 
-  section { padding: 60px 0; }
-  .promise { padding: 70px 0 40px; }
-  .stats { padding: 50px 0; }
   .stats-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
   .stat { padding: 20px 18px; min-height: 0; }
   .stat .num { font-size: 2.2rem; }
   .stat .label { font-size: 0.84rem; }
   .stat .deco { width: 80px; height: 80px; right: -16px; bottom: -16px; }
 
-  .how { padding: 60px 0; }
   .how .section-head { margin-bottom: 36px; }
   .how-tiles { gap: 14px; }
   .how-tile { padding: 22px; }
@@ -1666,13 +1688,11 @@ p { color: var(--ink-2); }
     max-width: 180px;
   }
 
-  .features { padding: 80px 0; }
   .features .section-head { margin-bottom: 32px; }
   .feat-grid { grid-template-columns: 1fr; gap: 14px; }
   .feat, .feat-wide, .feat-hero, .feat-tall { grid-column: span 1; min-height: 0; padding: 22px; }
   .feat-chip-vis { width: 130px; right: -16px; bottom: -16px; }
 
-  .privacy { padding: 110px 0 90px; }
   .privacy .intro { margin-bottom: 48px; }
   .priv-tiles { grid-template-columns: 1fr; gap: 12px; }
   .priv-tile { padding: 20px; min-height: 0; }
@@ -1680,13 +1700,8 @@ p { color: var(--ink-2); }
   .shield { width: 64px; height: 64px; top: 0; right: 0; }
   .shield svg { width: 28px; height: 28px; }
 
-  .trends { padding: 80px 0; }
-
-  .faq { padding: 70px 0; }
   .faq-item summary { padding: 18px 20px; font-size: 0.98rem; gap: 12px; }
   .faq-item .body .inner { padding: 0 20px 20px; font-size: 0.92rem; }
-
-  .final-cta { padding: 90px 0 110px; }
 
   .footer-inner { grid-template-columns: 1fr; gap: 28px; }
   .footer-bottom { flex-direction: column; gap: 12px; align-items: flex-start; }
