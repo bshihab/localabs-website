@@ -467,7 +467,10 @@ p { color: var(--ink-2); }
 /* Floating chip logo in hero */
 .hero-chip {
   position: absolute;
-  top: 6%; left: 18%;
+  /* Pushed down from 6% → 11% so the chip's drop-shadow has room to
+     extend upward without crowding the floating nav pill on tall
+     desktop viewports where the hero-inner gets flex-centered. */
+  top: 11%; left: 18%;
   width: 38%;
   filter: drop-shadow(0 28px 50px rgba(0, 90, 200, 0.35));
   animation: floaty 6.5s ease-in-out infinite;
@@ -485,7 +488,14 @@ p { color: var(--ink-2); }
   position: relative;
   width: 280px;
   aspect-ratio: 9 / 19.5;
-  border-radius: 46px;
+  /* Percentage border-radius with x/y split — first value is % of
+     width, second is % of height. Because the phone aspect ratio
+     is 9/19.5, the y-value (7.4%) when multiplied by height
+     resolves to the same pixel distance as 16% of width, giving
+     visually circular corners that scale proportionally at every
+     phone size instead of getting cartoonishly round on small
+     screens. Was a fixed 46px. */
+  border-radius: 16% / 7.4%;
   background: #0a0f1c;
   padding: 8px;
   box-shadow:
@@ -494,7 +504,7 @@ p { color: var(--ink-2); }
     0 12px 30px -10px rgba(0, 90, 200, 0.35);
 }
 .phone::before {
-  content: ""; position: absolute; inset: 0; border-radius: 46px;
+  content: ""; position: absolute; inset: 0; border-radius: inherit;
   border: 1px solid rgba(255,255,255,0.08); pointer-events: none;
 }
 .phone .notch {
@@ -512,7 +522,12 @@ p { color: var(--ink-2); }
 .phone-screen {
   position: relative;
   width: 100%; height: 100%;
-  border-radius: 38px;
+  /* Same percentage-with-slash trick as .phone — scales with the
+     screen's own dimensions. 14% / 6.5% gives a corner that's
+     slightly tighter than the outer bezel (matching the physical
+     bezel-radius offset), and remains circular at every size. Was
+     a fixed 38px. */
+  border-radius: 14% / 6.5%;
   overflow: hidden;
   background: #fff;
 }
@@ -523,25 +538,30 @@ p { color: var(--ink-2); }
 .hero-phone {
   position: absolute;
   bottom: 4%; right: 4%;
-  width: 64%; max-width: 320px;
+  /* Sized so the phone (which uses aspect-ratio 9/19.5) fits fully
+     inside the hero-stage's height. At max-width 290 the phone is
+     628px tall, which sits inside a 663px stage with breathing room
+     above and below — keeping the top edge below the fixed nav.
+     Was 64%/320px which made the phone 693px tall and pushed its
+     top under the nav pill. */
+  width: 58%; max-width: 290px;
   z-index: 2;
   transform: rotate(4deg);
   animation: floaty-phone 8s ease-in-out infinite;
 }
 .hero-phone .phone { width: 100%; }
 
-/* Smaller phone variant used in How-it-works tiles. The bezel and notch
-   scale down so the dynamic island doesn't dominate the tile. */
+/* Smaller phone variant used in How-it-works tiles. Now that .phone
+   and .phone-screen use percentage-based border-radius, the corners
+   scale automatically — only the padding (tighter bezel) and shadow
+   profile (softer, since the phone is smaller) need to be different. */
 .phone-sm {
-  border-radius: 36px;
   padding: 6px;
   box-shadow:
     0 1px 0 rgba(255,255,255,0.08) inset,
     0 24px 60px -20px rgba(10, 18, 35, 0.40),
     0 8px 22px -8px rgba(0, 90, 200, 0.30);
 }
-.phone-sm::before { border-radius: 36px; }
-.phone-sm .phone-screen { border-radius: 30px; }
 .phone-sm .notch {
   /* Smaller bezel has 6px padding instead of 8px, so the notch sits
      marginally higher — but the 2.3% on .phone is a good base for
