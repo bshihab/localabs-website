@@ -514,7 +514,12 @@ p { color: var(--ink-2); }
      screens. Was a fixed 46px. */
   border-radius: 16% / 7.4%;
   background: #0a0f1c;
-  padding: 8px;
+  /* Proportional bezel (was a fixed 8px). A fixed pixel padding turned
+     into a too-thick bezel at small phone sizes, so the screenshot's
+     rounded corners stopped nesting inside the bezel and poked past it.
+     A percentage keeps the bezel a constant fraction of the phone at
+     every browser width. */
+  padding: 2.6%;
   box-shadow:
     0 1px 0 rgba(255,255,255,0.08) inset,
     0 36px 80px -24px rgba(10, 18, 35, 0.45),
@@ -525,16 +530,11 @@ p { color: var(--ink-2); }
   border: 1px solid rgba(255,255,255,0.08); pointer-events: none;
 }
 .phone .notch {
-  position: absolute;
-  /* Percentage top relative to phone height. Phone aspect is 9/19.5,
-     so 2.3% ≈ 14px on the 280×606 hero phone (the original baked-in
-     offset) and scales proportionally as the phone shrinks on mobile.
-     Width is percentage too so the dynamic-island stays balanced at
-     every breakpoint instead of ballooning to half the bezel. */
-  top: 2.3%; left: 50%; transform: translateX(-50%);
-  width: 34%; aspect-ratio: 3.7 / 1;
-  border-radius: 999px;
-  background: #000; z-index: 4;
+  /* Hidden: the screenshots already include the real iOS status bar, so
+     drawing a black "dynamic island" pill on top of them doubled it up
+     and read as an oversized island. The bezel + the screenshot's own
+     status bar are enough — and this is bulletproof at every size. */
+  display: none;
 }
 .phone-screen {
   position: relative;
@@ -573,16 +573,12 @@ p { color: var(--ink-2); }
    scale automatically — only the padding (tighter bezel) and shadow
    profile (softer, since the phone is smaller) need to be different. */
 .phone-sm {
-  padding: 6px;
+  /* Inherits the proportional 2.6% bezel from .phone (was a fixed 6px),
+     so the smaller tile phones nest their screenshots correctly too. */
   box-shadow:
     0 1px 0 rgba(255,255,255,0.08) inset,
     0 24px 60px -20px rgba(10, 18, 35, 0.40),
     0 8px 22px -8px rgba(0, 90, 200, 0.30);
-}
-.phone-sm .notch {
-  /* Smaller bezel has 6px padding instead of 8px, so the notch sits
-     marginally higher — but the 2.3% on .phone is a good base for
-     both, so no need to override here. */
 }
 
 @keyframes floaty-phone {
