@@ -1003,6 +1003,10 @@ p { color: var(--ink-2); }
 
 @media (max-width: 900px) {
   .trends-grid { grid-template-columns: 1fr; gap: 28px; }
+  /* Once the trends section stacks, the Apple Health phone mockup becomes
+     a big standalone block that eats a lot of vertical space — hide it on
+     small windows and let the copy carry the section. */
+  .trends-visual { display: none; }
 }
 
 /* ============================================================
