@@ -724,16 +724,13 @@ p { color: var(--ink-2); }
   min-height: 200px;
 }
 .how-tile .tile-stage .phone {
-  /* Use max-height as the dominant constraint so the phone fits
-     fully inside the tile-stage instead of bleeding past the bottom
-     bezel (the .how-tile has overflow: hidden, which was clipping
-     the lower third of the phone and making the screenshot look
-     like it continued past the rounded corners). Aspect-ratio
-     resolves the width from height automatically. */
+  /* A DEFINITE height (not max-height) is required now that .phone-screen
+     is absolutely positioned: with height:auto and no in-flow content the
+     phone collapsed to zero and the screenshot vanished. 360px reproduces
+     the size these phones rendered at before; width comes from the 9/19.5
+     aspect-ratio (~166px). */
   width: auto;
-  height: auto;
-  max-height: 360px;
-  max-width: 220px;
+  height: 360px;
 }
 .how-tile .tile-stage .halo {
   position: absolute; inset: 8%;
@@ -1691,10 +1688,9 @@ p { color: var(--ink-2); }
   .how-tile { padding: 22px; }
   .how-tile .tile-stage { min-height: 280px; }
   .how-tile .tile-stage .phone {
-    /* Tighter cap on mobile so the phone fits inside the shorter
-       tile-stage without bottom-clipping. */
-    max-height: 320px;
-    max-width: 180px;
+    /* Definite height on mobile too (see desktop rule) — smaller so it
+       fits the shorter tile-stage. */
+    height: 320px;
   }
 
   .features .section-head { margin-bottom: 32px; }
