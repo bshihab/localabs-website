@@ -83,6 +83,12 @@ body {
   background:
     radial-gradient(1100px 700px at 75% -10%, rgba(90, 200, 250, calc(0.28 * (1 - var(--dark)))), transparent 60%),
     radial-gradient(900px 600px at 15% 110%, rgba(0, 122, 255, calc(0.22 * (1 - var(--dark)))), transparent 55%),
+    /* Pastel mesh — soft pink/lilac/peach blobs that give the page the
+       bloom-picker's liquid-glass backdrop. Light mode only (weighted by
+       1 - --dark) so the dark theme keeps its deep-blue mood. */
+    radial-gradient(800px 600px at 10% 35%, rgba(255, 150, 180, calc(0.13 * (1 - var(--dark)))), transparent 60%),
+    radial-gradient(700px 520px at 88% 50%, rgba(190, 150, 255, calc(0.12 * (1 - var(--dark)))), transparent 60%),
+    radial-gradient(750px 560px at 55% 100%, rgba(255, 190, 120, calc(0.12 * (1 - var(--dark)))), transparent 60%),
     radial-gradient(1000px 700px at 90% 110%, rgba(0, 58, 142, calc(0.55 * var(--dark))), transparent 65%),
     radial-gradient(900px 600px at 5% 0%, rgba(10, 50, 130, calc(0.45 * var(--dark))), transparent 60%),
     linear-gradient(180deg,
@@ -1780,4 +1786,61 @@ p { color: var(--ink-2); }
   display: inline-block;
   color: var(--ink-3);
   font-size: 12px;
+}
+
+/* ============================================================
+   Liquid-glass orbs — bloom-picker-style floating petals
+   Translucent colored circles with a specular top-left highlight,
+   backdrop blur, and a slow drift. Purely decorative (pointer-events
+   none, aria-hidden in markup). Sizes are clamp()-based and positions
+   are %-based, so they scale with any viewport; the opacity is tied
+   to --dark so they soften automatically in dark mode.
+   ============================================================ */
+.glass-orb {
+  position: absolute;
+  pointer-events: none;
+  border-radius: 999px;
+  width: clamp(64px, 11vw, 148px);
+  aspect-ratio: 1;
+  background:
+    radial-gradient(120% 120% at 30% 22%,
+      rgba(255,255,255,0.85) 0%,
+      rgba(255,255,255,0.25) 28%,
+      rgba(255,255,255,0) 55%),
+    var(--orb-tint, rgba(255, 178, 102, 0.42));
+  backdrop-filter: blur(10px) saturate(160%);
+  -webkit-backdrop-filter: blur(10px) saturate(160%);
+  border: 1px solid rgba(255,255,255,0.55);
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.8) inset,
+    0 18px 40px -18px var(--orb-glow, rgba(255,150,80,0.5));
+  opacity: calc(0.9 - 0.55 * var(--dark));
+  animation: orb-drift 16s ease-in-out infinite alternate;
+  /* Behind ALL section content (static text included), above the fixed
+     .world background (z -2). Positioned elements otherwise paint over
+     static text, and these orbs are big enough to cover a heading. */
+  z-index: -1;
+}
+.glass-orb.sm { width: clamp(36px, 6vw, 80px); }
+.orb-pink  { --orb-tint: rgba(255,140,170,0.40); --orb-glow: rgba(255,120,160,0.50); }
+.orb-peach { --orb-tint: rgba(255,180,110,0.42); --orb-glow: rgba(255,160,90,0.50); }
+.orb-mint  { --orb-tint: rgba(120,220,160,0.38); --orb-glow: rgba(90,200,140,0.45); }
+.orb-lilac { --orb-tint: rgba(190,150,255,0.38); --orb-glow: rgba(170,130,250,0.50); }
+.orb-sky   { --orb-tint: rgba(110,190,255,0.40); --orb-glow: rgba(90,170,250,0.50); }
+.orb-gold  { --orb-tint: rgba(245,184,30,0.38);  --orb-glow: rgba(245,184,30,0.50); }
+
+@keyframes orb-drift {
+  0%   { transform: translate3d(0, 0, 0) scale(1); }
+  100% { transform: translate3d(0, -24px, 0) scale(1.05); }
+}
+
+/* Small screens: keep the garnish but shrink + soften it so it never
+   crowds the content (sizes also shrink naturally via the vw clamp). */
+@media (max-width: 680px) {
+  .glass-orb { opacity: calc(0.55 - 0.3 * var(--dark)); }
+  .glass-orb.orb-lg-only { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glass-orb { animation: none !important; }
 }
