@@ -1844,3 +1844,75 @@ p { color: var(--ink-2); }
 @media (prefers-reduced-motion: reduce) {
   .glass-orb { animation: none !important; }
 }
+
+/* ============================================================
+   Liquid-glass motion pass — the cards themselves
+   1) Bloom-in: a light flash "through the glass" as a card reveals.
+   2) Unified hover: lift + specular sweep on the glass cards that
+      lacked it (stats, FAQ, privacy tiles) and the CTA buttons.
+   3) FAQ items bloom softly while open.
+   All CSS-only and size-relative, so it behaves at every viewport.
+   ============================================================ */
+
+/* 1) Bloom-in on reveal. Animates ONLY filter, so it can never fight
+   the reveal classes' opacity/transform transitions. */
+.glass.reveal.in, .glass.reveal-scale.in, .glass.reveal-tilt.in,
+.glass.reveal-left.in, .glass.reveal-right.in, .glass.reveal-blur.in {
+  animation: glass-bloom 0.9s cubic-bezier(0.3, 0.7, 0.3, 1) 0.12s backwards;
+}
+@keyframes glass-bloom {
+  0%   { filter: brightness(1) saturate(1); }
+  35%  { filter: brightness(1.14) saturate(1.25); }
+  100% { filter: brightness(1) saturate(1); }
+}
+
+/* 2a) Hover lift for the glass cards that had none. Uses the separate
+   `translate` property so it composes with (never overrides) the reveal
+   classes' `transform` transitions. */
+.stat, .faq-item, .priv-tile {
+  transition-property: translate, box-shadow;
+  transition-duration: 0.35s;
+  transition-timing-function: cubic-bezier(0.3, 0.7, 0.3, 1.3);
+}
+.stat:hover, .faq-item:hover, .priv-tile:hover { translate: 0 -3px; }
+
+/* 2b) Specular sweep on hover — same light-pass the shimmer tiles have,
+   for the cards and buttons that lacked it. (All targets have
+   border-radius + overflow clipping, so the sweep stays inside.) */
+.stat::after, .faq-item::after, .priv-tile::after,
+.nav-cta::after, .appstore::after {
+  content: ""; position: absolute; inset: -1px;
+  border-radius: inherit;
+  background: linear-gradient(115deg, transparent 30%, rgba(255,255,255,0.30) 50%, transparent 70%);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-100%);
+  transition: opacity 0.3s ease;
+}
+.stat:hover::after, .faq-item:hover::after, .priv-tile:hover::after,
+.nav-cta:hover::after, .appstore:hover::after {
+  opacity: 1;
+  animation: shimmer 1.1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.stat, .priv-tile { position: relative; }
+.nav-cta, .appstore { position: relative; overflow: hidden; }
+
+/* 3) FAQ bloom-while-open: a soft blue glow + tiny lift so the active
+   question reads as lit glass. */
+.faq-item:has(details[open]) {
+  translate: 0 -2px;
+  box-shadow:
+    var(--glass-shadow),
+    0 0 0 1px rgba(0, 122, 255, 0.16),
+    0 16px 44px -16px rgba(0, 122, 255, 0.35);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glass.reveal.in, .glass.reveal-scale.in, .glass.reveal-tilt.in,
+  .glass.reveal-left.in, .glass.reveal-right.in, .glass.reveal-blur.in {
+    animation: none;
+  }
+  .stat:hover::after, .faq-item:hover::after, .priv-tile:hover::after,
+  .nav-cta:hover::after, .appstore:hover::after { animation: none; opacity: 0; }
+  .stat, .faq-item, .priv-tile { transition: none; }
+}
